@@ -42,10 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch(`./ajax/ajax.php?sort=${option.querySelector('input').value}`).then(function(response) {
                 return response.json();
             }).then(function(data) {
-                document.querySelector('#searchBox').value = '';
+
                 const rows = document.querySelector('.table-body');
                 rows.innerHTML = "";
+                const hasValue = !!e.target.value.length;
                 data.forEach((item) => {
+                    const hasValue = !!document.querySelector('#searchBox').value.length;
+                    let isFound = false;
                     const createRow = document.createElement("div");
                     createRow.classList.add('table-row');
                     rows.append(createRow);
@@ -64,6 +67,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     createRow.append(createName);
                     createRow.append(createTitle);
                     createRow.append(createPrice);
+                    if (item.name.includes(document.querySelector('#searchBox').value)) {
+                        isFound = true;
+                        createName.classList.toggle('is-match', hasValue && item.name.includes(document.querySelector('#searchBox').value));
+                    }
+                    if (item.title.includes(document.querySelector('#searchBox').value)) {
+                        isFound = true;
+                        createTitle.classList.toggle('is-match', hasValue && item.title.includes(document.querySelector('#searchBox').value));
+                    }
+                    if (item.cost.includes(document.querySelector('#searchBox').value) ) {
+                        isFound = true;
+                        createPrice.classList.toggle('is-match', hasValue && item.price.includes(document.querySelector('#searchBox').value));
+                    }
+                    createRow.classList.toggle('is-hidden', !isFound);
                 })
             }).catch(function(err) {
                 console.log('Fetch Error :-S', err);
