@@ -2,13 +2,13 @@
  1.git clone https://github.com/Vladimir547/nativeTable.git
  
  2. cd nativeTable
- 3. 
+  
  3.docker-compose up -d
 
- 5. В браузере открыть http://localhost:8001/
- 6. 
- 7. ввести логин: root и Пароль: root и нажать авторизоваться
- 8. 
+ 4. В браузере открыть http://localhost:8001/
+  
+ 5. ввести логин: root и Пароль: root и нажать авторизоваться
+  
  ![image](https://github.com/Vladimir547/nativeTable/assets/48596087/f53b7b3e-4ac2-4e79-a4bb-d46eecb0e798)
 
  6.Выбрать базу данных nativeTable и войти во вкладку импорт
