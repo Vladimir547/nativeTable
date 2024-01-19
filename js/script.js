@@ -45,9 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const rows = document.querySelector('.table-body');
                 rows.innerHTML = "";
-                const hasValue = !!e.target.value.length;
+                const hasValue = !!document.querySelector('#searchBox').value.length;
                 data.forEach((item) => {
-                    const hasValue = !!document.querySelector('#searchBox').value.length;
                     let isFound = false;
                     const createRow = document.createElement("div");
                     createRow.classList.add('table-row');
@@ -77,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     if (item.cost.includes(document.querySelector('#searchBox').value) ) {
                         isFound = true;
-                        createPrice.classList.toggle('is-match', hasValue && item.price.includes(document.querySelector('#searchBox').value));
+                        createPrice.classList.toggle('is-match', hasValue && String(item.cost).includes(document.querySelector('#searchBox').value));
                     }
                     createRow.classList.toggle('is-hidden', !isFound);
                 })
@@ -96,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let isFound = false;
             const itemRow = [...row.querySelectorAll('.item')];
             itemRow.forEach((item) => {
-                const value  = item.getAttribute('data-search');
+                const value  = item.getAttribute('data-search').toLowerCase();
                 const isMatch = value.includes(term);
                 if (isMatch) {
                     isFound = true;
